@@ -52,7 +52,7 @@ class SwiftViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addGestureRecognizer(rotateGesture)
     }
     
-    func handlePanGesture (panGesture: UIPanGestureRecognizer) {
+    @objc func handlePanGesture (panGesture: UIPanGestureRecognizer) {
         let translation = panGesture.translation(in: panGesture.view?.superview)
         if panGesture.state == .began || panGesture.state == .changed {
             panGesture.view?.center = CGPoint(x: (panGesture.view?.center.x)! + translation.x, y: (panGesture.view?.center.y)! + translation.y)
@@ -60,7 +60,7 @@ class SwiftViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func handlePinchGesture (pinchGesture: UIPinchGestureRecognizer) {
+    @objc func handlePinchGesture (pinchGesture: UIPinchGestureRecognizer) {
         if pinchGesture.state == .began || pinchGesture.state == .changed {
             let currentScale: CGFloat = pinchGesture.view?.layer.value(forKeyPath: "transform.scale.x") as! CGFloat
             let minScale: CGFloat = 0.1
@@ -79,7 +79,7 @@ class SwiftViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    open func handleRotateGesture (rotateGesture: UIRotationGestureRecognizer) {
+    @objc open func handleRotateGesture (rotateGesture: UIRotationGestureRecognizer) {
         if rotateGesture.state == .began || rotateGesture.state == .changed {
             rotateGesture.view?.transform = (rotateGesture.view?.transform)!.rotated(by: rotateGesture.rotation)
             rotateGesture.rotation = 0
